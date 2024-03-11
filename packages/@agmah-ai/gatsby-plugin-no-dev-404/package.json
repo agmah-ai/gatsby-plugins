@@ -1,0 +1,27 @@
+{
+  "type": "module",
+  "name": "@agmah-ai/gatsby-plugin-no-dev-404",
+  "version": "0.1.0",
+  "description": "Gatsby plugin to disable the dev mode 404 page",
+  "keywords": [
+    "node",
+    "npm",
+    "gatsby",
+    "gatsby-plugin"
+  ],
+  "author": "Arpit Aggarwal",
+  "license": "ISC",
+  "scripts": {
+    "prepare": "npm run build && cp ./dist/* .",
+    "build": "tsc -b",
+    "prepublishOnly": "cp ./package.json ./README.md ./dist/"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.25",
+    "gatsby": "*",
+    "typescript": "^5.4.2"
+  },
+  "peerDependencies": {
+    "gatsby": "*"
+  }
+}
