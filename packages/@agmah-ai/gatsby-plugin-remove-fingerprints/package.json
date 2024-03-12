@@ -1,0 +1,26 @@
+{
+  "type": "module",
+  "name": "@agmah-ai/gatsby-plugin-remove-fingerprints",
+  "version": "0.1.0",
+  "description": "Gatsby plugin to remove content hash",
+  "keywords": [
+    "node",
+    "npm",
+    "gatsby",
+    "gatsby-plugin"
+  ],
+  "author": "Arpit Aggarwal <a.aggarwal@agmah.ai>",
+  "license": "ISC",
+  "scripts": {
+    "build": "tsc -b",
+    "prepublishOnly": "cp ./package.json ./README.md ./dist/"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.25",
+    "gatsby": "*",
+    "typescript": "^5.4.2"
+  },
+  "peerDependencies": {
+    "gatsby": "*"
+  }
+}
