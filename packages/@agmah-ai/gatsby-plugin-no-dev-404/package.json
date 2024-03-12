@@ -9,10 +9,9 @@
     "gatsby",
     "gatsby-plugin"
   ],
-  "author": "Arpit Aggarwal",
+  "author": "Arpit Aggarwal <a.aggarwal@agmah.ai>",
   "license": "ISC",
   "scripts": {
-    "prepare": "npm run build && cp ./dist/* .",
     "build": "tsc -b",
     "prepublishOnly": "cp ./package.json ./README.md ./dist/"
   },
