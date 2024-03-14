@@ -22,5 +22,8 @@
   },
   "peerDependencies": {
     "gatsby": "*"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
