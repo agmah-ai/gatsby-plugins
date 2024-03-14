@@ -44,7 +44,19 @@ jobs:
       - name: Extract packages
         id: packages
         run: |
-          wspackages=$(npm ls --json | jq '.dependencies | keys' | jq -r '.[]')
+          packages=$(npm ls --json | jq '.dependencies | keys' | jq -r '.[]')
+          echo "p: ${packages}"
           if [[ ${{ github.ref_name == github.event.repository.default_branch }} == 'false' ]]; then
-            git diff --name-only origin/${{ github.event.repository.default_branch }} HEAD
+            changedFiles=$(git diff --name-only origin/${{ github.event.repository.default_branch }} HEAD)
+            changedPackages=()
+            for p in ${packages}; do
+              for cf in ${changedFiles}; do
+                if [[ "${cf}" == "packages/${p}"/** ]]; then
+                  finalPackages+=("${p}")
+                  break
+                fi
+              done
+            done
+            packages=changedPackages
           fi
+          echo "p: ${packages}"
