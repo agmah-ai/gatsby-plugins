@@ -6,7 +6,7 @@ export const onCreateWebpackConfig = ({ actions, stage, getConfig }: CreateWebpa
 
     // Find the minimizer in the webpack configuration
     const minifyJSIndex = config.optimization.minimizer.findIndex(
-      (minimizer) => minimizer.constructor.name === "TerserPlugin",
+      (minimizer: any) => minimizer.constructor.name === "TerserPlugin",
     );
 
     // Check if the TerserPlugin is found
