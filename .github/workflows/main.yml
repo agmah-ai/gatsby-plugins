@@ -45,9 +45,6 @@ jobs:
         id: packages
         run: |
           wspackages=$(npm ls --json | jq '.dependencies | keys' | jq -r '.[]')
-          echo "packages: ${wspackages}"
-          echo "Default branch is ${{ github.event.repository.default_branch }}"
           if [[ ${{ github.ref_name == github.event.repository.default_branch }} == 'false' ]]; then
-            echo "Default branch is ${{ github.event.repository.default_branch }}"
             git diff --name-only origin/${{ github.event.repository.default_branch }} HEAD
           fi
