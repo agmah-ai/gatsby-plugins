@@ -57,6 +57,6 @@ jobs:
                 fi
               done
             done
-            packages=changedPackages
+            packages="${changedPackages}"
           fi
           echo "p: ${packages}"
