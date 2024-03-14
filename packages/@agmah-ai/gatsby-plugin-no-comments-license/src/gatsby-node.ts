@@ -9,6 +9,8 @@ export const onCreateWebpackConfig = ({ actions, stage, getConfig }: CreateWebpa
       (minimizer: any) => minimizer.constructor.name === "TerserPlugin",
     );
 
+
+
     // Check if the TerserPlugin is found
     if (minifyJSIndex !== -1) {
       const terserPluginOptions = config.optimization.minimizer[minifyJSIndex].options;
