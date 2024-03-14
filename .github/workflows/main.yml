@@ -59,4 +59,9 @@ jobs:
             done
             packages=${changedPackages[@]}
           fi
-          echo "p: ${packages}"
+          output=()
+          for p in ${packages}; do
+            output+=("{\"package\": \"${p}\"}")
+          done
+          output="$(echo ${output[@]} | jq -s '.')"
+          echo "${output}"
