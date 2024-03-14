@@ -1,0 +1,6 @@
+/*.js
+/*.ts
+/*.map
+package-lock.json
+*.tsbuildinfo
+dist
