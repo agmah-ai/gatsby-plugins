@@ -1,10 +1,6 @@
 import type { CreateWebpackConfigArgs } from "gatsby";
 
-export const onCreateWebpackConfig = ({
-  stage,
-  getConfig,
-  actions,
-}: CreateWebpackConfigArgs) => {
+export const onCreateWebpackConfig = ({ stage, getConfig, actions }: CreateWebpackConfigArgs) => {
   if (stage === "build-javascript") {
     const newWebpackConfig = {
       ...getConfig(),
