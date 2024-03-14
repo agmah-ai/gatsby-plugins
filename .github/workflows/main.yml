@@ -1,0 +1,50 @@
+name: CI
+
+on: [push, pull_request, workflow_dispatch]
+
+env:
+  NODE_VERSION: 20
+
+jobs:
+  preparation:
+    name: Preparation
+    runs-on: ubuntu-latest
+    outputs:
+      packages: ${{ steps.packages.outputs.packages }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Cache node modules
+        id: cache-npm
+        uses: actions/cache@v4
+        with:
+          # npm cache files are stored in '~/.npm' on Linux/macOS
+          path: |
+            ~/.npm
+            ./node_modules
+          key: ${{ runner.os }}-preparation-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-preparation-
+            ${{ runner.os }}-
+
+      - name: Install dependencies
+        if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
+        # To verify the npm cache replace the run command below with
+        #   run: npm cache verify && npm ci --prefer-offline --no-audit --loglevel verbose && npm cache verify
+        run: npm ci
+
+      - name: Extract packages
+        id: packages
+        run: |
+          wspackages=$(npm ls --json | jq '.dependencies | keys' | jq -r '.[]')
+          echo "packages: ${wspackages}"
+          echo "Default branch is ${{ github.event.repository.default_branch }}"
+          if [[ ${{ github.ref_name == github.event.repository.default_branch }} == 'false' ]]; then
+            echo "Default branch is ${{ github.event.repository.default_branch }}"
+          fi
