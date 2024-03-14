@@ -52,7 +52,7 @@ jobs:
             for p in ${packages}; do
               for cf in ${changedFiles}; do
                 if [[ "${cf}" == "packages/${p}"/** ]]; then
-                  finalPackages+=("${p}")
+                  changedPackages+=("${p}")
                   break
                 fi
               done
